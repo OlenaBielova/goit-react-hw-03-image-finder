@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   SearchContainer,
@@ -9,36 +8,35 @@ import {
   Input,
 } from './Searchbar.styled';
 import { FaSearch } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 
 export class Searchbar extends Component {
   state = {
-    request: '',
+    query: '',
   };
 
   handleChange = event => {
-    this.setState({ request: event.currentTarget.value.toLowerCase() });
+    this.setState({ query: event.currentTarget.value.toLowerCase() });
   };
 
-  handleSearch = event => {
+  handleSubmit = event => {
     event.preventDefault();
     document.getElementById('searchForm').reset();
-    const { request } = this.state;
 
-    if (request.trim() === '') {
-      toast.error('Type your search request');
-      return;
+    if (this.state.query === '') {
+      alert('Type your search query!');
+    } else {
+      this.props.onSubmit(this.state.query);
     }
-    this.props.onSearch(request);
-    this.setState({ request: '' });
   };
 
   render() {
     return (
       <SearchContainer>
-        <SearchForm id="searchForm" onSubmit={this.handleSearch}>
+        <SearchForm id="searchForm" onSubmit={this.handleSubmit}>
           <SearchButton type="submit">
             <FaSearch />
-            <Label></Label>
+            <Label />
           </SearchButton>
           <Input
             onChange={this.handleChange}
@@ -52,3 +50,7 @@ export class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Gallery = styled.ul`
   display: grid;
-  max-width: calc(100vw - 48px);
+  max-width: calc(100% - 32px);
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 16px;
   margin-top: 0;
@@ -13,6 +13,7 @@ export const Gallery = styled.ul`
   margin-right: auto;
 `;
 export const GalleryItem = styled.li`
+  width: 100%;
   height: 260px;
   border-radius: 2px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
