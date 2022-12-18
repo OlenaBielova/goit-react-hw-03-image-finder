@@ -1,5 +1,6 @@
 import React from 'react';
 import { ImgModal, Overlay, LargeImg } from './Modal.styled';
+import PropTypes from 'prop-types';
 
 export const Modal = ({ src, alt, onClick }) => (
   <Overlay onClick={onClick}>
@@ -8,3 +9,9 @@ export const Modal = ({ src, alt, onClick }) => (
     </ImgModal>
   </Overlay>
 );
+
+Modal.propTypes = {
+  src: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+}

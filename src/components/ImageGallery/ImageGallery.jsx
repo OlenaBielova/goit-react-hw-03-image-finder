@@ -37,9 +37,8 @@ export class ImageGallery extends Component {
     if (prevStateQuery !== query || (prevPage !== nextPage && nextPage !== 1)) {
       try {
         this.setState({ loading: true });
-        console.log('query -', nextQuery, '   page - ', nextPage);
         const imageList = await getImages(nextQuery, nextPage);
-        console.log(imageList);
+
         if (imageList.totalHits === 0) {
           alert('Images not found');
         }
@@ -68,9 +67,8 @@ export class ImageGallery extends Component {
   };
 
   render() {
-    console.log(this.state);
     const { images, loading, btnIsVisible } = this.state;
-    console.log(images);
+
     return (
       <>
         <Gallery>
